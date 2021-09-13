@@ -30,8 +30,8 @@ public class RobotEngine {
     }
 
     private boolean willFallOff(final Robot robot, final MarsGrid marsGrid) {
-        return (robot.getCoordinates().getX().equals(marsGrid.getCoordinates().getX()) && robot.getOrientation().equals(E)) ||
-                (robot.getCoordinates().getY().equals(marsGrid.getCoordinates().getY()) && robot.getOrientation().equals(N)) ||
+        return (robot.getCoordinates().getX().equals(marsGrid.getBoundaries().getX()) && robot.getOrientation().equals(E)) ||
+                (robot.getCoordinates().getY().equals(marsGrid.getBoundaries().getY()) && robot.getOrientation().equals(N)) ||
                 (robot.getCoordinates().getX().equals(0) && robot.getOrientation().equals(W)) ||
                 (robot.getCoordinates().getY().equals(0) && robot.getOrientation().equals(S));
     }
