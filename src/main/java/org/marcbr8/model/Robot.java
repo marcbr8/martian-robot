@@ -1,7 +1,10 @@
 package org.marcbr8.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import java.util.List;
 
+@JsonDeserialize(using = RobotDeseriailzer.class)
 public class Robot {
 
     private Coordinates coordinates;
@@ -12,6 +15,13 @@ public class Robot {
                  final Orientation orientation) {
         this.coordinates = coordinates;
         this.orientation = orientation;
+    }
+    public Robot(final Coordinates coordinates,
+                 final Orientation orientation,
+                 final List<Instruction> instructions) {
+        this.coordinates = coordinates;
+        this.orientation = orientation;
+        this.instructions = instructions;
     }
 
     public Coordinates getCoordinates() {

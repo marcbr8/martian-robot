@@ -29,5 +29,5 @@ public class RobotController {
                 r -> collect.add(robotEngine.useInstructionsForRobotOnGrid(r, r.getInstructions(), requestObject.getMarsGrid())));
         return  ResponseEntity.ok(collect);
     }
-    
+
 }
