@@ -5,12 +5,10 @@ import java.util.List;
 public class RequestObject {
     private MarsGrid marsGrid;
     private List<Robot> robotList;
-    private String instructions;
 
-    public RequestObject(MarsGrid marsGrid, List<Robot> robotList, String instructions) {
+    public RequestObject(MarsGrid marsGrid, List<Robot> robotList) {
         this.marsGrid = marsGrid;
         this.robotList = robotList;
-        this.instructions = instructions;
     }
 
     public MarsGrid getMarsGrid() {
@@ -27,13 +25,5 @@ public class RequestObject {
 
     public void setRobotList(List<Robot> robotList) {
         this.robotList = robotList;
-    }
-
-    public String getInstructions() {
-        return instructions;
-    }
-
-    public void setInstructions(String instructions) {
-        this.instructions = instructions;
     }
 }

@@ -6,6 +6,7 @@ public class MarsGrid {
     @JsonProperty("boundaries")
     private Coordinates boundaries;
 
+
     public MarsGrid(final Coordinates boundaries) {
         this.boundaries = boundaries;
     }

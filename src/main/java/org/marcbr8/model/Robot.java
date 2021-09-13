@@ -1,9 +1,12 @@
 package org.marcbr8.model;
 
+import java.util.List;
+
 public class Robot {
 
     private Coordinates coordinates;
     private Orientation orientation;
+    private List<Instruction> instructions;
 
     public Robot(final Coordinates coordinates,
                  final Orientation orientation) {
@@ -32,5 +35,13 @@ public class Robot {
 
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
+    }
+
+    public List<Instruction> getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(List<Instruction> instructions) {
+        this.instructions = instructions;
     }
 }
