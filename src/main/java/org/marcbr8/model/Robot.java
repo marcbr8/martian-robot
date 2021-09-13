@@ -12,11 +12,6 @@ public class Robot {
     private List<Instruction> instructions;
 
     public Robot(final Coordinates coordinates,
-                 final Orientation orientation) {
-        this.coordinates = coordinates;
-        this.orientation = orientation;
-    }
-    public Robot(final Coordinates coordinates,
                  final Orientation orientation,
                  final List<Instruction> instructions) {
         this.coordinates = coordinates;
@@ -53,5 +48,14 @@ public class Robot {
 
     public void setInstructions(List<Instruction> instructions) {
         this.instructions = instructions;
+    }
+
+    @Override
+    public String toString() {
+        return "Robot{" +
+                "coordinates=" + coordinates +
+                ", orientation=" + orientation +
+                ", instructions=" + instructions +
+                '}';
     }
 }

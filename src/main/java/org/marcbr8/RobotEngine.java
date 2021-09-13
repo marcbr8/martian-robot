@@ -3,7 +3,6 @@ package org.marcbr8;
 import org.marcbr8.model.*;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.marcbr8.model.Orientation.*;
@@ -12,10 +11,9 @@ import static org.marcbr8.model.Orientation.*;
 public class RobotEngine {
 
 
-    public RobotDto useInstructionsForRobotOnGrid(final Robot robot,
-                                                  final List<Instruction> instructionList,
-                                                  final MarsGrid marsGrid) {
-        for ( Instruction instruction : instructionList){
+    public RobotDto moveRobotAccordingToItsInstructions(final Robot robot,
+                                                        final MarsGrid marsGrid) {
+        for ( Instruction instruction : robot.getInstructions()){
             if (instruction.equals(Instruction.F)){
                 if(willFallOff(robot, marsGrid)){
                     return new RobotDto(robot.getCoordinates(), robot.getOrientation(), Optional.of("LOST"));

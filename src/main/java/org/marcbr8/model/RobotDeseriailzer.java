@@ -1,7 +1,6 @@
 package org.marcbr8.model;
 
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -11,25 +10,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RobotDeseriailzer extends JsonDeserializer {
+public class RobotDeseriailzer extends JsonDeserializer<Robot> {
     @Override
-    public Object deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-        /*{
-            "marsGrid" : {
-            "boundaries" : {
-                "x" : 5,
-                        "y" : 3
-            }
-        },
-            "robotList" : [{
-            "coordinates" : {
-                "x" : 1,
-                        "y": 1 },
-            "orientation" : "E",
-                    "instructions" : "RFRFRF"
-        }]
+    public Robot deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException{
 
-        }*/
         JsonNode node = jsonParser.getCodec().readTree(jsonParser);
 
         Integer x = node.get("coordinates").get("x").asInt();

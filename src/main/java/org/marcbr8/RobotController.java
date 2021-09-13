@@ -26,7 +26,7 @@ public class RobotController {
     public ResponseEntity<List<RobotDto>> applyInstructionsForRobotsOnGivenGrid(final @RequestBody RequestObject requestObject){
         final List<RobotDto> collect = newArrayList();
         requestObject.getRobotList().forEach(
-                r -> collect.add(robotEngine.useInstructionsForRobotOnGrid(r, r.getInstructions(), requestObject.getMarsGrid())));
+                r -> collect.add(robotEngine.moveRobotAccordingToItsInstructions(r, requestObject.getMarsGrid())));
         return  ResponseEntity.ok(collect);
     }
 

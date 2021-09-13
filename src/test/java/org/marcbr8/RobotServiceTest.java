@@ -7,8 +7,7 @@ import org.marcbr8.model.*;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.List;
-
+import static java.util.Collections.emptyList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.verifyNoInteractions;
 
@@ -23,8 +22,8 @@ class RobotServiceTest {
 
     @Test
     public void serviceShouldReturnSameRobotCoordinatesAndPositionWhenInstructionListIsEmpty(){
-        final Robot robot = new Robot(Coordinates.of(1,1), Orientation.W);
-        final RobotDto robotDto = robotService.calculatePosition(marsGrid, robot, List.of());
+        final Robot robot = new Robot(Coordinates.of(1,1), Orientation.W, emptyList());
+        final RobotDto robotDto = robotService.calculatePosition(marsGrid, robot);
         assertEquals(robot.getCoordinates(), robotDto.getCoordinates());
         assertEquals(robot.getOrientation(), robot.getOrientation());
         verifyNoInteractions(engine);
