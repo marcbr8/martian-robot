@@ -1,24 +1,21 @@
 package org.marcbr8.model;
 
-import javax.persistence.Entity;
-
-@Entity
 public class MarsGrid {
 
-    private Coordinates boundaries;
-    private Integer id;
+    private Coordinates coordinates;
 
-    public MarsGrid(final Integer id,
-                    final Coordinates boundaries) {
-        this.id = id;
-        this.boundaries = boundaries;
+    public MarsGrid(final Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
-    public Integer getId() {
-        return id;
+    public MarsGrid(){
     }
 
-    public Coordinates getBoundaries() {
-        return boundaries;
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 }

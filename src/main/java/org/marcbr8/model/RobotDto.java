@@ -2,14 +2,14 @@ package org.marcbr8.model;
 
 import java.util.Optional;
 
-public class ResultDto {
+public class RobotDto {
     private Coordinates coordinates;
     private Orientation orientation;
     private Optional<String> lost;
 
-    public ResultDto(final Coordinates coordinates,
-                     final Orientation orientation,
-                     Optional<String> lost) {
+    public RobotDto(final Coordinates coordinates,
+                    final Orientation orientation,
+                    Optional<String> lost) {
         this.coordinates = coordinates;
         this.orientation = orientation;
         this.lost = lost;

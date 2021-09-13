@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class GridService {
 
     public MarsGrid getGridWithId(final Integer id){
-        return new MarsGrid(1, new Coordinates(5,2));
+        return new MarsGrid( new Coordinates(5,2));
     }
 
 }

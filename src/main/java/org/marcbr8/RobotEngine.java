@@ -12,13 +12,13 @@ import static org.marcbr8.model.Orientation.*;
 public class RobotEngine {
 
 
-    public ResultDto useInstructionsForRobotOnGrid(final Robot robot,
-                                                   final List<Instruction> instructionList,
-                                                   final MarsGrid marsGrid) {
+    public RobotDto useInstructionsForRobotOnGrid(final Robot robot,
+                                                  final List<Instruction> instructionList,
+                                                  final MarsGrid marsGrid) {
         for ( Instruction instruction : instructionList){
             if (instruction.equals(Instruction.F)){
                 if(willFallOff(robot, marsGrid)){
-                    return new ResultDto(robot.getCoordinates(), robot.getOrientation(), Optional.of("LOST"));
+                    return new RobotDto(robot.getCoordinates(), robot.getOrientation(), Optional.of("LOST"));
                 }
                 robot.setCoordinates(moveForward(robot));
             }
@@ -26,12 +26,12 @@ public class RobotEngine {
                 robot.setOrientation(changeOrientation(robot, instruction));
             }
         }
-        return new ResultDto(robot.getCoordinates(), robot.getOrientation(), Optional.empty());
+        return new RobotDto(robot.getCoordinates(), robot.getOrientation(), Optional.empty());
     }
 
     private boolean willFallOff(final Robot robot, final MarsGrid marsGrid) {
-        return (robot.getCoordinates().getX().equals(marsGrid.getBoundaries().getX()) && robot.getOrientation().equals(E)) ||
-                (robot.getCoordinates().getY().equals(marsGrid.getBoundaries().getY()) && robot.getOrientation().equals(N)) ||
+        return (robot.getCoordinates().getX().equals(marsGrid.getCoordinates().getX()) && robot.getOrientation().equals(E)) ||
+                (robot.getCoordinates().getY().equals(marsGrid.getCoordinates().getY()) && robot.getOrientation().equals(N)) ||
                 (robot.getCoordinates().getX().equals(0) && robot.getOrientation().equals(W)) ||
                 (robot.getCoordinates().getY().equals(0) && robot.getOrientation().equals(S));
     }
