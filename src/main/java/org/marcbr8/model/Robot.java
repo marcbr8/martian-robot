@@ -1,8 +1,5 @@
 package org.marcbr8.model;
 
-import java.util.List;
-import java.util.Optional;
-
 public class Robot {
 
     private Coordinates coordinates;
@@ -26,6 +23,11 @@ public class Robot {
                                final Integer y) {
         this.coordinates.setX(x);
         this.coordinates.setY(y);
+    }
+
+    public void setCoordinates(final Coordinates coordinates) {
+        this.coordinates = coordinates;
+
     }
 
     public void setOrientation(Orientation orientation) {

@@ -18,13 +18,12 @@ public class RobotEngine {
         for ( Instruction instruction : instructionList){
             if (instruction.equals(Instruction.F)){
                 if(willFallOff(robot, marsGrid)){
-                    System.out.println("Falling off");
                     return new ResultDto(robot.getCoordinates(), robot.getOrientation(), Optional.of("LOST"));
                 }
-                moveForward(robot);
+                robot.setCoordinates(moveForward(robot));
             }
             else{
-                changeOrientation(robot, instruction);
+                robot.setOrientation(changeOrientation(robot, instruction));
             }
         }
         return new ResultDto(robot.getCoordinates(), robot.getOrientation(), Optional.empty());
@@ -38,39 +37,71 @@ public class RobotEngine {
     }
 
 
-    private void changeOrientation(final Robot robot, final Instruction instruction) {
+    private Orientation changeOrientation( Robot robot, final Instruction instruction) {
         switch (instruction) {
-            case R -> faceRight(robot);
-            case L -> faceLeft(robot);
+            case R -> {
+                return faceRight(robot);
+            }
+            case L -> {
+                return faceLeft(robot);
+            }
+            default -> throw new IllegalStateException("Wrong instruction " + instruction);
         }
     }
 
-    private void faceRight(final Robot robot) {
+    private Orientation faceRight(final Robot robot) {
         final Orientation initialOrientation = robot.getOrientation();
         switch (initialOrientation) {
-            case N -> robot.setOrientation(E);
-            case E -> robot.setOrientation(S);
-            case W -> robot.setOrientation(N);
-            case S -> robot.setOrientation(W);
+            case N -> {
+                return E;
+            }
+            case E -> {
+                return S;
+            }
+            case W -> {
+                return N;
+            }
+            case S -> {
+                return W;
+            }
+            default -> throw new IllegalStateException("Wrong orientation " + initialOrientation);
         }
     }
 
-    private void faceLeft(final Robot robot) {
+    private Orientation faceLeft(final Robot robot) {
         final Orientation initialOrientation = robot.getOrientation();
         switch (initialOrientation) {
-            case N -> robot.setOrientation(W);
-            case E -> robot.setOrientation(N);
-            case W -> robot.setOrientation(S);
-            case S -> robot.setOrientation(E);
+            case N -> {
+                return W;
+            }
+            case E ->{
+                return N;
+            }
+            case W ->{
+                return S;
+            }
+            case S ->{
+                return E;
+            }
+            default -> throw new IllegalStateException("Not a valid orientation " + initialOrientation);
         }
     }
 
-    private void moveForward(final Robot robot){
+    private Coordinates moveForward(final Robot robot){
         switch (robot.getOrientation()) {
-            case W -> robot.setCoordinates(robot.getCoordinates().getX() - 1, robot.getCoordinates().getY());
-            case E -> robot.setCoordinates(robot.getCoordinates().getX() + 1, robot.getCoordinates().getY());
-            case N -> robot.setCoordinates(robot.getCoordinates().getX(), robot.getCoordinates().getY() + 1);
-            case S -> robot.setCoordinates(robot.getCoordinates().getX(), robot.getCoordinates().getY() - 1);
+            case W -> {
+                return Coordinates.of(robot.getCoordinates().getX() - 1, robot.getCoordinates().getY());
+            }
+            case E -> {
+                return Coordinates.of(robot.getCoordinates().getX() + 1, robot.getCoordinates().getY());
+            }
+            case N ->{
+                return Coordinates.of(robot.getCoordinates().getX(), robot.getCoordinates().getY() + 1);
+            }
+            case S -> {
+                return Coordinates.of(robot.getCoordinates().getX(), robot.getCoordinates().getY() - 1);
+            }
+            default -> throw new IllegalStateException("Invalid Orientation " + robot.getOrientation());
         }
     }
 }

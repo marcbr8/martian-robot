@@ -49,8 +49,6 @@ class RobotEngineTest {
         final Robot robot = new Robot(new Coordinates(1,1), N);
         final ResultDto resultDto = robotEngine.useInstructionsForRobotOnGrid(robot, List.of(R, R, R, L, L), marsGrid);
         final Coordinates expectedCoordinates = new Coordinates(1,1);
-        System.out.println(resultDto.getCoordinates());
-        System.out.println(expectedCoordinates);
         assertThat(resultDto.getLost()).isEmpty();
         assertEquals(expectedCoordinates, resultDto.getCoordinates());
         assertEquals(E, resultDto.getOrientation());
