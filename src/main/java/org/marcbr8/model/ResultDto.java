@@ -1,16 +1,18 @@
 package org.marcbr8.model;
 
+import java.util.Optional;
+
 public class ResultDto {
     private Coordinates coordinates;
     private Orientation orientation;
-    private boolean isLost;
+    private Optional<String> lost;
 
     public ResultDto(final Coordinates coordinates,
                      final Orientation orientation,
-                     boolean isLost) {
+                     Optional<String> lost) {
         this.coordinates = coordinates;
         this.orientation = orientation;
-        this.isLost = isLost;
+        this.lost = lost;
     }
 
     public Coordinates getCoordinates() {
@@ -21,12 +23,12 @@ public class ResultDto {
         this.coordinates = coordinates;
     }
 
-    public boolean isLost() {
-        return isLost;
+    public Optional<String> getLost() {
+        return lost;
     }
 
-    public void setLost(boolean lost) {
-        isLost = lost;
+    public void setLost(Optional<String> lost) {
+        this.lost = lost;
     }
 
     public Orientation getOrientation() {

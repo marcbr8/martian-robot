@@ -1,14 +1,14 @@
 package org.marcbr8;
 
-import org.marcbr8.model.*;
+import org.marcbr8.model.Instruction;
+import org.marcbr8.model.MarsGrid;
+import org.marcbr8.model.ResultDto;
+import org.marcbr8.model.Robot;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
-import static org.marcbr8.model.Orientation.*;
 
 @Service
 public class RobotService {
@@ -23,7 +23,7 @@ public class RobotService {
                                        final Robot robot,
                                        final List<Instruction> instructionList){
         if (instructionList.isEmpty()){
-            return new ResultDto(robot.getCoordinates(), robot.getOrientation(), false);
+            return new ResultDto(robot.getCoordinates(), robot.getOrientation(), Optional.empty());
         }
         return robotEngine.useInstructionsForRobotOnGrid(robot, instructionList, marsGrid);
     }
