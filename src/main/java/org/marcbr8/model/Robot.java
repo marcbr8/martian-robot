@@ -1,16 +1,20 @@
 package org.marcbr8.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.List;
+import java.util.Objects;
 
-@JsonDeserialize(using = RobotDeseriailzer.class)
+@JsonDeserialize(using = RobotDeserializer.class)
+@JsonSerialize(using = RobotSerializer.class)
 public class Robot {
 
     private Coordinates coordinates;
     private Orientation orientation;
     private List<Instruction> instructions;
 
+    public Robot(){}
     public Robot(final Coordinates coordinates,
                  final Orientation orientation,
                  final List<Instruction> instructions) {
@@ -57,5 +61,18 @@ public class Robot {
                 ", orientation=" + orientation +
                 ", instructions=" + instructions +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Robot robot = (Robot) o;
+        return Objects.equals(coordinates, robot.coordinates) && orientation == robot.orientation && Objects.equals(instructions, robot.instructions);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(coordinates, orientation, instructions);
     }
 }

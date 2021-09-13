@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class RobotDeseriailzer extends JsonDeserializer<Robot> {
+public class RobotDeserializer extends JsonDeserializer<Robot>{
     @Override
     public Robot deserialize(JsonParser jsonParser, DeserializationContext ctxt) throws IOException{
 

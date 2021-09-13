@@ -6,6 +6,9 @@ public class RequestObject {
     private MarsGrid marsGrid;
     private List<Robot> robotList;
 
+    public RequestObject(){
+
+    }
     public RequestObject(MarsGrid marsGrid, List<Robot> robotList) {
         this.marsGrid = marsGrid;
         this.robotList = robotList;
