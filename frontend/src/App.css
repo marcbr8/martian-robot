@@ -13,6 +13,27 @@
   }
 }
 
+@font-face {
+  font-family: 'Mars';
+  src : local('Mars'), url("./fonts/Mars.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Mars Bold';
+  src : local('Mars Bold'), url("./fonts/Mars Bold.ttf") format('truetype');
+}
+
+h1, h2{
+  font-family:  'Mars';
+}
+
+.mars-font {
+  font-family:  'Mars';
+}
+
+.input-size{
+  font-size: 0.5rem;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

@@ -5,9 +5,16 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 	background: url("https://upload.wikimedia.org/wikipedia/commons/d/d8/NASA_Mars_Rover.jpg");
+ 	background-size:     cover;                      /* <------ */
+ 	background-repeat:   no-repeat;
+ 	background-position: right center;  
+	color: black;
+
 }
 
 code {
+
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
