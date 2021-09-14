@@ -18,24 +18,19 @@ import React, { Component } from 'react'
 		}
 
 		defineXforRobot(a){
-
-			this.setState( prevState => ({
-				robot : {
-					...prevState.robot,
-					x: a
-				}
-			}));
+			var robot = {...this.state.robot}
+			robot.coordinates = {...robot.coordinates,
+				x: a}
+			console.log(robot);	
+			this.setState({robot})
 
 		}
 
 		defineYforRobot(a){
-
-			this.setState( prevState => ({
-				robot : {
-					...prevState.robot,
-					y : a
-				}
-			}));
+			var robot = {...this.state.robot}
+			robot.coordinates = {...robot.coordinates,
+				y: a}
+			this.setState({robot})
 
 		}
 
@@ -114,11 +109,15 @@ import React, { Component } from 'react'
 				
 		}
 
+		removeRobot (){
+			this.props.funcDeleteRobot();
+		}
+
 
 		render () {
 			return (
 				<div>
-					<div className="container">
+					<div className="container mt-5">
 
 						<h2 className="text-left"> Robot {this.props.id} </h2>
 						<div className="row alert alert-light mars-font">
@@ -133,7 +132,7 @@ import React, { Component } from 'react'
 										<div className="col my-auto">
 											<div className="dropdown">
 											  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    {this.state.robot.x}
+											    {this.state.robot.coordinates.x}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											    <a onClick = { () => this.defineXforRobot(1) } className="dropdown-item" href="/#">1</a>
@@ -163,7 +162,7 @@ import React, { Component } from 'react'
 										<div className="col my-auto">
 											<div className="dropdown">
 											  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-											    {this.state.robot.y ? this.state.robot.y : '0'}
+											    {this.state.robot.coordinates.y ? this.state.robot.coordinates.y : '0'}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											    <a onClick = { () => this.defineYforRobot(1) } className="dropdown-item" href="/#">1</a>
@@ -211,9 +210,13 @@ import React, { Component } from 'react'
 								  <input type="text" className="form-control input-size" placeholder="Instructions" onChange={this.setInstructions} aria-label="" aria-describedby="basic-addon1"></input>
 								</div>
 							</div>
+							<div className="col-1 my-auto">
+						        <button onClick = { () => this.removeRobot()} type="button" className="btn btn-danger"> X </button>
+							</div>
 						</div>
 						<div className="row text-center mars-font">	
-							<div className="col align-self-center">					
+							<div className="col align-self-center">	
+
 								<button onClick = { () => this.submitRobot() }type="button" className="btn btn-success">Submit robot</button>
 							</div>
 						</div>

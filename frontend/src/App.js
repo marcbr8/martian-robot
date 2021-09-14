@@ -10,6 +10,7 @@ class App extends Component {
     super()
     this.submitRobotWithId = this.submitRobotWithId.bind(this)
     this.submitMarsGrid = this.submitMarsGrid.bind(this)
+    this.removeRobot = this.removeRobot.bind(this)
     this.state = {
         value: [],
         count: 1,
@@ -39,13 +40,19 @@ class App extends Component {
       count: this.state.count+1
     })
   }
+  removeRobot(){
+    console.log('tryining to delete')
+      this.setState({
+        count: this.state.count - 1
+      }) 
+  }
 
   displayRobotComponents(){
      let robotComponents = [];
      for(let i = 0; i < this.state.count; i++){
                robotComponents.push(
                <div key={i}>
-                  <RobotViewComponent id={i+1} funcSubmitRobot={this.submitRobotWithId}/>
+                  <RobotViewComponent id={i+1} funcSubmitRobot={this.submitRobotWithId} funcDeleteRobot={this.removeRobot}/>
                </div>
             )
      }
@@ -55,7 +62,7 @@ class App extends Component {
   calculatePosition () {
     console.log('calculating for this robots...')
     console.log(this.state.robots);
-    RobotService.getPositionOfRobots(this.state.marsGrid, this.state.robots);
+    //RobotService.getPositionOfRobots(this.state.marsGrid, this.state.robots);
 
   }
 
