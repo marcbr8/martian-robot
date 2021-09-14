@@ -1,4 +1,7 @@
-package org.marcbr8.model;
+package org.marcbr8.model.dtos;
+
+import org.marcbr8.model.Coordinates;
+import org.marcbr8.model.Orientation;
 
 import java.util.Optional;
 

@@ -1,7 +1,7 @@
-package org.marcbr8;
+package org.marcbr8.service;
 
 import org.marcbr8.model.MarsGrid;
-import org.marcbr8.model.RobotDto;
+import org.marcbr8.model.dtos.RobotDto;
 import org.marcbr8.model.Robot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -2,6 +2,8 @@ package org.marcbr8.model;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.marcbr8.model.serialization.RobotDeserializer;
+import org.marcbr8.model.serialization.RobotSerializer;
 
 import java.util.List;
 import java.util.Objects;

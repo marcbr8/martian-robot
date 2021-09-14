@@ -1,10 +1,11 @@
-package org.marcbr8;
+package org.marcbr8.controller;
 
-import org.marcbr8.model.RequestObject;
-import org.marcbr8.model.RobotDto;
+import org.marcbr8.model.dtos.RequestObject;
+import org.marcbr8.model.dtos.RobotDto;
+import org.marcbr8.service.RobotEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +23,7 @@ public class RobotController {
         this.robotEngine = robotEngine;
     }
 
-    @GetMapping("/robot/move")
+    @PostMapping("/robot/move")
     public ResponseEntity<List<RobotDto>> applyInstructionsForRobotsOnGivenGrid(final @RequestBody RequestObject requestObject){
         final List<RobotDto> collect = newArrayList();
         requestObject.getRobotList().forEach(

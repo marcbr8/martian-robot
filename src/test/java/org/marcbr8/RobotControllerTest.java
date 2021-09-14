@@ -5,7 +5,10 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.marcbr8.controller.RobotController;
 import org.marcbr8.model.*;
+import org.marcbr8.model.dtos.RequestObject;
+import org.marcbr8.service.RobotEngine;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.MediaType;
@@ -34,7 +37,7 @@ class RobotControllerTest {
                 givenRequestObject();
         final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
         final String requestObjectString = objectWriter.writeValueAsString(requestObject);
-        mockMvc.perform(MockMvcRequestBuilders.get("/robot/move")
+        mockMvc.perform(MockMvcRequestBuilders.post("/robot/move")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestObjectString))
                 .andExpect(status().isOk());

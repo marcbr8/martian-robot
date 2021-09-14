@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.marcbr8.model.*;
+import org.marcbr8.model.dtos.RobotDto;
+import org.marcbr8.service.RobotEngine;
+import org.marcbr8.service.RobotService;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 

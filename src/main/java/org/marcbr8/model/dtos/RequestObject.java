@@ -1,4 +1,7 @@
-package org.marcbr8.model;
+package org.marcbr8.model.dtos;
+
+import org.marcbr8.model.MarsGrid;
+import org.marcbr8.model.Robot;
 
 import java.util.List;
 

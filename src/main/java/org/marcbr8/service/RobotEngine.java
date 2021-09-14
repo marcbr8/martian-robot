@@ -1,7 +1,8 @@
-package org.marcbr8;
+package org.marcbr8.service;
 
 import com.google.common.collect.Maps;
 import org.marcbr8.model.*;
+import org.marcbr8.model.dtos.RobotDto;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
