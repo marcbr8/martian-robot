@@ -40,11 +40,19 @@ class App extends Component {
       count: this.state.count+1
     })
   }
-  removeRobot(){
-    console.log('tryining to delete')
+  removeRobot(index){
+    console.log('tryining to delete at index ' + index-1 + 'that means this one')
+    var robots = this.state.robots
+    console.log(robots[index-1])
+
+    robots.splice(index-1,1)
+    console.log('deleted')
+    console.log(robots)
       this.setState({
+        robots : robots,
         count: this.state.count - 1
-      }) 
+      })
+      this.render();
   }
 
   displayRobotComponents(){

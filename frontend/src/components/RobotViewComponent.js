@@ -21,7 +21,6 @@ import React, { Component } from 'react'
 			var robot = {...this.state.robot}
 			robot.coordinates = {...robot.coordinates,
 				x: a}
-			console.log(robot);	
 			this.setState({robot})
 
 		}
@@ -109,8 +108,8 @@ import React, { Component } from 'react'
 				
 		}
 
-		removeRobot (){
-			this.props.funcDeleteRobot();
+		removeRobot (index){
+			this.props.funcDeleteRobot(index);
 		}
 
 
@@ -135,16 +134,16 @@ import React, { Component } from 'react'
 											    {this.state.robot.coordinates.x}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a onClick = { () => this.defineXforRobot(1) } className="dropdown-item" href="/#">1</a>
-											    <a onClick = { () => this.defineXforRobot(2) } className="dropdown-item" href="/#">2</a>
-											    <a onClick = { () => this.defineXforRobot(3) } className="dropdown-item" href="/#">3</a>
-											    <a onClick = { () => this.defineXforRobot(4) } className="dropdown-item" href="/#">4</a>
-											    <a onClick = { () => this.defineXforRobot(5) } className="dropdown-item" href="/#">5</a>
-											    <a onClick = { () => this.defineXforRobot(6) } className="dropdown-item" href="/#">6</a>
-											    <a onClick = { () => this.defineXforRobot(7) } className="dropdown-item" href="/#">7</a>
-											    <a onClick = { () => this.defineXforRobot(8) } className="dropdown-item" href="/#">8</a>
-											    <a onClick = { () => this.defineXforRobot(9) } className="dropdown-item" href="/#">9</a>
-											    <a onClick = { () => this.defineXforRobot(10) } className="dropdown-item" href="/#">10</a>
+											    <button onClick = { () => this.defineXforRobot(1) } className="dropdown-item" >1</button>
+											    <button onClick = { () => this.defineXforRobot(2) } className="dropdown-item" >2</button>
+											    <button onClick = { () => this.defineXforRobot(3) } className="dropdown-item" >3</button>
+											    <button onClick = { () => this.defineXforRobot(4) } className="dropdown-item" >4</button>
+											    <button onClick = { () => this.defineXforRobot(5) } className="dropdown-item" >5</button>
+											    <button onClick = { () => this.defineXforRobot(6) } className="dropdown-item" >6</button>
+											    <button onClick = { () => this.defineXforRobot(7) } className="dropdown-item" >7</button>
+											    <button onClick = { () => this.defineXforRobot(8) } className="dropdown-item" >8</button>
+											    <button onClick = { () => this.defineXforRobot(9) } className="dropdown-item" >9</button>
+											    <button onClick = { () => this.defineXforRobot(10) } className="dropdown-item" >10</button>
 											  </div>
 											</div>
 										</div>
@@ -165,16 +164,16 @@ import React, { Component } from 'react'
 											    {this.state.robot.coordinates.y ? this.state.robot.coordinates.y : '0'}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a onClick = { () => this.defineYforRobot(1) } className="dropdown-item" href="/#">1</a>
-											    <a onClick = { () => this.defineYforRobot(2) } className="dropdown-item" href="/#">2</a>
-											    <a onClick = { () => this.defineYforRobot(3) } className="dropdown-item" href="/#">3</a>
-											    <a onClick = { () => this.defineYforRobot(4) } className="dropdown-item" href="/#">4</a>
-											    <a onClick = { () => this.defineYforRobot(5) } className="dropdown-item" href="/#">5</a>
-											    <a onClick = { () => this.defineYforRobot(6) } className="dropdown-item" href="/#">6</a>
-											    <a onClick = { () => this.defineYforRobot(7) } className="dropdown-item" href="/#">7</a>
-											    <a onClick = { () => this.defineYforRobot(8) } className="dropdown-item" href="/#">8</a>
-											    <a onClick = { () => this.defineYforRobot(9) } className="dropdown-item" href="/#">9</a>
-											    <a onClick = { () => this.defineYforRobot(10) } className="dropdown-item" href="/#">10</a>
+											    <button onClick = { () => this.defineYforRobot(1) } className="dropdown-item" >1</button>
+											    <button onClick = { () => this.defineYforRobot(2) } className="dropdown-item" >2</button>
+											    <button onClick = { () => this.defineYforRobot(3) } className="dropdown-item" >3</button>
+											    <button onClick = { () => this.defineYforRobot(4) } className="dropdown-item" >4</button>
+											    <button onClick = { () => this.defineYforRobot(5) } className="dropdown-item" >5</button>
+											    <button onClick = { () => this.defineYforRobot(6) } className="dropdown-item" >6</button>
+											    <button onClick = { () => this.defineYforRobot(7) } className="dropdown-item" >7</button>
+											    <button onClick = { () => this.defineYforRobot(8) } className="dropdown-item" >8</button>
+											    <button onClick = { () => this.defineYforRobot(9) } className="dropdown-item" >9</button>
+											    <button onClick = { () => this.defineYforRobot(10) } className="dropdown-item" >10</button>
 											  </div>
 											</div>
 										</div>
@@ -195,10 +194,10 @@ import React, { Component } from 'react'
 											    {this.state.robot.orientation ? this.state.robot.orientation : 'N'}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a onClick = { () => this.defineOrientationForRobot("N") } className="dropdown-item" href="/#">N</a>
-											    <a onClick = { () => this.defineOrientationForRobot("E") } className="dropdown-item" href="/#">E</a>
-											    <a onClick = { () => this.defineOrientationForRobot("S") } className="dropdown-item" href="/#">S</a>
-											    <a onClick = { () => this.defineOrientationForRobot("W") } className="dropdown-item" href="/#">W</a>
+											    <button onClick = { () => this.defineOrientationForRobot("N") } className="dropdown-item" >N</button>
+											    <button onClick = { () => this.defineOrientationForRobot("E") } className="dropdown-item" >E</button>
+											    <button onClick = { () => this.defineOrientationForRobot("S") } className="dropdown-item" >S</button>
+											    <button onClick = { () => this.defineOrientationForRobot("W") } className="dropdown-item" >W</button>
 											  </div>
 											</div>
 										</div>
@@ -211,7 +210,7 @@ import React, { Component } from 'react'
 								</div>
 							</div>
 							<div className="col-1 my-auto">
-						        <button onClick = { () => this.removeRobot()} type="button" className="btn btn-danger"> X </button>
+						        <button onClick = { () => this.removeRobot(this.props.id)} type="button" className="btn btn-danger"> X </button>
 							</div>
 						</div>
 						<div className="row text-center mars-font">	
