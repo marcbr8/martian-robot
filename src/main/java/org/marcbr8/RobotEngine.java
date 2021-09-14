@@ -1,21 +1,35 @@
 package org.marcbr8;
 
+import com.google.common.collect.Maps;
 import org.marcbr8.model.*;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.marcbr8.model.Orientation.*;
 
 @Component
 public class RobotEngine {
 
+    private Map<MarsGrid, Set<Coordinates>> dropped = Maps.newHashMap();
 
     public RobotDto moveRobotAccordingToItsInstructions(final Robot robot,
                                                         final MarsGrid marsGrid) {
         for ( Instruction instruction : robot.getInstructions()){
             if (instruction.equals(Instruction.F)){
                 if(willFallOff(robot, marsGrid)){
+                    Set<Coordinates> failedCoordinatesForGrid = dropped.get(marsGrid);
+                    if (someOtherRobotAlreadyFellHere(robot, failedCoordinatesForGrid)){
+                        continue;
+                    }
+                    if (failedCoordinatesForGrid == null){
+                        failedCoordinatesForGrid = new HashSet<>();
+                    }
+                    failedCoordinatesForGrid.add(robot.getCoordinates());
+                    dropped.put(marsGrid, failedCoordinatesForGrid);
                     return new RobotDto(robot.getCoordinates(), robot.getOrientation(), Optional.of("LOST"));
                 }
                 robot.setCoordinates(moveForward(robot));
@@ -25,6 +39,10 @@ public class RobotEngine {
             }
         }
         return new RobotDto(robot.getCoordinates(), robot.getOrientation(), Optional.empty());
+    }
+
+    private boolean someOtherRobotAlreadyFellHere(Robot robot, Set<Coordinates> failedCoordinatesForGrid) {
+        return failedCoordinatesForGrid != null && failedCoordinatesForGrid.contains(robot.getCoordinates());
     }
 
     private boolean willFallOff(final Robot robot, final MarsGrid marsGrid) {

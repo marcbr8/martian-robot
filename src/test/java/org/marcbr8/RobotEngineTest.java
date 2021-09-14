@@ -15,6 +15,7 @@ import static org.marcbr8.model.Instruction.*;
 import static org.marcbr8.model.Orientation.*;
 
 class RobotEngineTest {
+    public static final Coordinates MARS_BOUNDARIES = new Coordinates(5, 3);
     private MarsGrid marsGrid;
 
     private RobotEngine robotEngine;
@@ -25,7 +26,7 @@ class RobotEngineTest {
         final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(robot, marsGrid);
         final Coordinates expectedCoordinates = new Coordinates(2,1);
         assertThat(robotDto.getLost()).isEmpty();
-        assertEquals(robotDto.getCoordinates(), expectedCoordinates);
+        assertEquals(expectedCoordinates, robotDto.getCoordinates());
     }
 
 
@@ -35,7 +36,9 @@ class RobotEngineTest {
         final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(robot, marsGrid);
         final Coordinates expectedCoordinates = new Coordinates(1,2);
         assertThat(robotDto.getLost()).isEmpty();
-        assertEquals(robotDto.getCoordinates(), expectedCoordinates);
+        assertEquals(expectedCoordinates, robotDto.getCoordinates());
+        assertEquals(expectedCoordinates, robotDto.getCoordinates());
+        assertEquals(N, robotDto.getOrientation());
     }
 
 
@@ -47,7 +50,6 @@ class RobotEngineTest {
         assertThat(robotDto.getLost()).isEmpty();
         assertEquals(expectedCoordinates, robotDto.getCoordinates());
         assertEquals(E, robotDto.getOrientation());
-
     }
 
     @Test
@@ -56,56 +58,89 @@ class RobotEngineTest {
         final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(robot, marsGrid);
         final Coordinates expectedCoordinates = new Coordinates(4,2);
         assertThat(robotDto.getLost()).isEmpty();
-        assertEquals(robotDto.getCoordinates(), expectedCoordinates);
-        assertEquals(robotDto.getOrientation(), N);
+        assertEquals(expectedCoordinates, robotDto.getCoordinates());
+        assertEquals(N, robotDto.getOrientation());
     }
 
     @Test
     public void shouldFallOffGridWhenBeyondXUpperBoundaries() {
-        final Robot robot = new Robot(new Coordinates(5,3), E, List.of(F));
+        final Robot robot = new Robot(MARS_BOUNDARIES, E, List.of(F));
         final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(robot, marsGrid);
-        final Coordinates expectedCoordinates = new Coordinates(5,3);
         assertThat(robotDto.getLost()).isNotEmpty();
         assertThat(robotDto.getLost()).hasValue("LOST");
-        assertEquals(robotDto.getCoordinates(), expectedCoordinates);
-        assertEquals(robotDto.getOrientation(), E);
+        assertEquals(MARS_BOUNDARIES, robot.getCoordinates());
+        assertEquals(E, robotDto.getOrientation());
+    }
+
+    @Test
+    public void shouldNotFallOffGridWhenBeyondXUpperBoundariesIfOtherRobotAlreadyFellOff() {
+        final Robot firstRobotToFall = new Robot(MARS_BOUNDARIES, E, List.of(F));
+        final Robot secondRobotToFall = new Robot(MARS_BOUNDARIES, E, List.of(F, R, F));
+        final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(firstRobotToFall, marsGrid);
+        final RobotDto robot2Dto = robotEngine.moveRobotAccordingToItsInstructions(secondRobotToFall, marsGrid);
+        final Coordinates expectedCoordinatesOfSecondRobot = new Coordinates(5,2);
+        assertThat(robotDto.getLost()).isNotEmpty();
+        assertThat(robot2Dto.getLost()).isEmpty();
+        assertEquals(MARS_BOUNDARIES, robotDto.getCoordinates());
+        assertEquals(expectedCoordinatesOfSecondRobot, robot2Dto.getCoordinates());
+        assertEquals(E, robotDto.getOrientation());
+        assertEquals(S, robot2Dto.getOrientation());
+    }
+
+    @Test
+    public void shouldNotFallOffGridWhenBeyondXUpperBoundariesIfOtherRobotAlreadyFellOffButFallsAtOtherCoordinates() {
+        final Robot firstRobotToFall = new Robot(MARS_BOUNDARIES, E, List.of(F));
+        final Robot secondRobotToFall = new Robot(new Coordinates(4,3), N, List.of(F, R, F));
+        final Robot thirdRobotToFall = new Robot(new Coordinates(3,3), E, List.of(F, L, F, L));
+        final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(firstRobotToFall, marsGrid);
+        final RobotDto robot2Dto = robotEngine.moveRobotAccordingToItsInstructions(secondRobotToFall, marsGrid);
+        final RobotDto robot3Dto = robotEngine.moveRobotAccordingToItsInstructions(thirdRobotToFall, marsGrid);
+        final Coordinates expectedCoordinatesOfSecondRobot2 = new Coordinates(4,3);
+        assertThat(robotDto.getLost()).isNotEmpty();
+        assertThat(robot2Dto.getLost()).isNotEmpty();
+        assertThat(robot3Dto.getLost()).isEmpty();
+        assertEquals(MARS_BOUNDARIES, robotDto.getCoordinates());
+        assertEquals(expectedCoordinatesOfSecondRobot2, robot2Dto.getCoordinates());
+        assertEquals(expectedCoordinatesOfSecondRobot2, robot3Dto.getCoordinates());
+        assertEquals(E, robotDto.getOrientation());
+        assertEquals(N, robot2Dto.getOrientation());
+        assertEquals(W, robot3Dto.getOrientation());
     }
 
     @Test
     public void shouldFallOffGridWhenBeyondXDownBoundaries() {
-        final Robot robot = new Robot(new Coordinates(0,3), W, List.of(F));
+        final Coordinates robotInitialCoordinates = new Coordinates(0, 3);
+        final Robot robot = new Robot(robotInitialCoordinates, W, List.of(F));
         final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(robot, marsGrid);
-        final Coordinates expectedCoordinates = new Coordinates(0,3);
         assertThat(robotDto.getLost()).isNotEmpty();
         assertThat(robotDto.getLost()).hasValue("LOST");
-        assertEquals(robotDto.getCoordinates(), expectedCoordinates);
-        assertEquals(robotDto.getOrientation(), W);
+        assertEquals(robotInitialCoordinates, robotDto.getCoordinates());
+        assertEquals(W, robotDto.getOrientation());
     }
 
     @Test
     public void shouldFallOffGridWhenBeyondYUpperBoundaries() {
-        final Robot robot = new Robot(new Coordinates(5,3), N, List.of(F));
+        final Robot robot = new Robot(MARS_BOUNDARIES, N, List.of(F));
         final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(robot, marsGrid);
-        final Coordinates expectedCoordinates = new Coordinates(5,3);
         assertThat(robotDto.getLost()).isNotEmpty();
         assertThat(robotDto.getLost()).hasValue("LOST");
-        assertEquals(robotDto.getCoordinates(), expectedCoordinates);
-        assertEquals(robotDto.getOrientation(), N);
+        assertEquals(MARS_BOUNDARIES, robotDto.getCoordinates());
+        assertEquals(N, robotDto.getOrientation());
     }
 
     @Test
     public void shouldFallOffGridWhenBeyondYDownBoundaries() {
-        final Robot robot = new Robot(new Coordinates(3,0), S, List.of(F));
+        final Coordinates robotInitialCoordinates = new Coordinates(3, 0);
+        final Robot robot = new Robot(robotInitialCoordinates, S, List.of(F));
         final RobotDto robotDto = robotEngine.moveRobotAccordingToItsInstructions(robot, marsGrid);
-        final Coordinates expectedCoordinates = new Coordinates(3,0);
         assertThat(robotDto.getLost()).isNotEmpty();
         assertThat(robotDto.getLost()).hasValue("LOST");
-        assertEquals(robotDto.getCoordinates(), expectedCoordinates);
-        assertEquals(robotDto.getOrientation(), S);
+        assertEquals(robotInitialCoordinates, robotDto.getCoordinates());
+        assertEquals(S, robotDto.getOrientation());
     }
 
     private void givenMarsGrid(){
-        marsGrid = new MarsGrid( new Coordinates(5,3));
+        marsGrid = new MarsGrid(MARS_BOUNDARIES);
     }
 
     private void givenEngine(){
