@@ -6,10 +6,11 @@ import React, { Component } from 'react'
 			super(props)
 			this.state = {
 				marsGrid : {
-					x : 0,
-					y : 0			
+					boundaries : {
+						x : 0,
+						y : 0			
+					}
 				}
-
 			}
 		}
 
@@ -34,6 +35,9 @@ import React, { Component } from 'react'
 
 		}
 
+		submitGrid(){
+			this.props.funcSubmitMarsGrid(this.state.marsGrid);
+		}
 
 		render () {
 			return (
@@ -52,7 +56,7 @@ import React, { Component } from 'react'
 										<div className="col my-auto">
 											<div className="dropdown">
 											  <button className="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								 			   {this.state.marsGrid.x}
+								 			   {this.state.marsGrid.boundaries.x}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<a onClick = { () => this.defineXForMarsGrid(1) } className="dropdown-item" href="/#">1</a>
@@ -82,7 +86,7 @@ import React, { Component } from 'react'
 										<div className="col my-auto">
 											<div className="dropdown">
 											  <button className="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								  			  {this.state.marsGrid.y}
+								  			  {this.state.marsGrid.boundaries.y}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											    <a onClick = { () => this.defineYForMarsGrid(1) } className="dropdown-item" href="/#">1</a>
@@ -104,10 +108,9 @@ import React, { Component } from 'react'
 						</div>
 						<div className="row text-center">	
 							<div className="col align-self-center">					
-								<button onClick = { () => this.submitRobot() }type="button" className="btn btn-success">Submit Grid</button>
+								<button onClick = { () => this.submitGrid() }type="button" className="btn btn-success">Submit Grid</button>
 							</div>
 						</div>
-
 					</div>
 				</div>
 				)

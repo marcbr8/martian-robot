@@ -2,16 +2,19 @@ import './App.css';
 import React, { Component } from 'react'
 import GridViewComponent from './components/GridViewComponent';
 import RobotViewComponent from './components/RobotViewComponent';
+import RobotService from './services/RobotService';
 
 class App extends Component {
 
   constructor() {
     super()
     this.submitRobotWithId = this.submitRobotWithId.bind(this)
+    this.submitMarsGrid = this.submitMarsGrid.bind(this)
     this.state = {
         value: [],
         count: 1,
-        robots : []
+        robots : [],
+        marsGrid : {}
        } 
   }
 
@@ -20,6 +23,15 @@ class App extends Component {
     let robots = [...this.state.robots];
     robots[robotId-1] = robot;
     this.setState({robots});
+  }
+
+  submitMarsGrid (marsGrid){
+    console.log('parent got this mars grit')
+    console.log(marsGrid)
+    this.setState({
+      marsGrid
+    })
+    
   }
 
   addMoreRobots() {
@@ -42,7 +54,9 @@ class App extends Component {
 
   calculatePosition () {
     console.log('calculating for this robots...')
-    console.log(this.state.robots)
+    console.log(this.state.robots);
+    RobotService.getPositionOfRobots(this.state.marsGrid, this.state.robots);
+
   }
 
   render(){
@@ -51,7 +65,7 @@ class App extends Component {
       <div className = "container">
         <h1 className="display-4 text-light main-title">Martian Robot Management App</h1>
       </div>  
-        <GridViewComponent /> 
+        <GridViewComponent funcSubmitMarsGrid={this.submitMarsGrid}/> 
         {this.displayRobotComponents()}
         
         <button onClick = { () => this.addMoreRobots()} type="button" className="btn btn-light"> Add robot </button>

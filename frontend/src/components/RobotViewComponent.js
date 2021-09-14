@@ -6,10 +6,12 @@ import React, { Component } from 'react'
 			super(props)
 			this.state = {
 				robot : {
-					x : 0,
-					y : 0,
-					orientation : 'N',
-					instructions :''
+					coordinates : {
+						x : 0,
+						y : 0
+					},
+					orientation : "N",
+					instructions :""
 			
 				}
 			}
@@ -31,7 +33,7 @@ import React, { Component } from 'react'
 			this.setState( prevState => ({
 				robot : {
 					...prevState.robot,
-					y: a
+					y : a
 				}
 			}));
 
@@ -46,7 +48,7 @@ import React, { Component } from 'react'
 				}
 			}));
 		}
-		
+
 		isAValidRobot(robot){
 			if(robot.instructions === "" || robot.instructions.match(/^[LFR]+$/))
 				return true
@@ -79,15 +81,21 @@ import React, { Component } from 'react'
 
 
 		submitted () {
-			return(
-						<div className="row text-center ">
-							<div className="col align-self-center">
-							<p className = "text-center text-success alert-success">
+			if(this.state.submitted){
+			return (
+					<div className="container">
+						<div className="row  justify-content-center">
+							<div className="col-5 alert-success">
+								<p className = "text-center text-success">
 								{this.state.submitted ? 'Robot submitted' :'' }
-							</p>
+								</p>
 							</div>
-						</div>	);
+						</div>
+					</div>
+					);
+			}
 		}
+
 
 		renderError () {
 			if(this.state.invalidRobot){
@@ -188,10 +196,10 @@ import React, { Component } from 'react'
 											    {this.state.robot.orientation ? this.state.robot.orientation : 'N'}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-											    <a onClick = { () => this.defineOrientationForRobot('N') } className="dropdown-item" href="/#">N</a>
-											    <a onClick = { () => this.defineOrientationForRobot('E') } className="dropdown-item" href="/#">E</a>
-											    <a onClick = { () => this.defineOrientationForRobot('S') } className="dropdown-item" href="/#">S</a>
-											    <a onClick = { () => this.defineOrientationForRobot('W') } className="dropdown-item" href="/#">W</a>
+											    <a onClick = { () => this.defineOrientationForRobot("N") } className="dropdown-item" href="/#">N</a>
+											    <a onClick = { () => this.defineOrientationForRobot("E") } className="dropdown-item" href="/#">E</a>
+											    <a onClick = { () => this.defineOrientationForRobot("S") } className="dropdown-item" href="/#">S</a>
+											    <a onClick = { () => this.defineOrientationForRobot("W") } className="dropdown-item" href="/#">W</a>
 											  </div>
 											</div>
 										</div>
