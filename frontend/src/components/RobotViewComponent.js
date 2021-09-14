@@ -8,7 +8,6 @@ import React, { Component } from 'react'
 				robot : {
 			
 				}
-
 			}
 		}
 
@@ -34,12 +33,14 @@ import React, { Component } from 'react'
 		}
 
 
+
+
 		render () {
 			return (
 				<div>
 					<div className="container">
 						<div className="row">
-							<h2 className="text-left"> Robot </h2>
+							<h2 className="text-left"> Robot {this.props.id} </h2>
 							<div className="col">
 								<div className="dropdown">
 								  <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -83,11 +84,10 @@ import React, { Component } from 'react'
 								  <div className="input-group-prepend">
 								    <span className="input-group-text" id="basic-addon1">Instructions</span>
 								  </div>
-								  <input type="text" class="form-control" placeholder="Please type your instructions" aria-label="" aria-describedby="basic-addon1"></input>
+								  <input type="text" className="form-control" placeholder="Please type your instructions" aria-label="" aria-describedby="basic-addon1"></input>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 				)
