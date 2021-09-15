@@ -108,17 +108,13 @@ import React, { Component } from 'react'
 				
 		}
 
-		removeRobot (index){
-			this.props.funcDeleteRobot(index);
-		}
-
 
 		render () {
 			return (
 				<div>
 					<div className="container mt-5">
 
-						<h2 className="text-left"> Robot {this.props.id} </h2>
+						<h2 className="text-left text-light"> Robot </h2>
 						<div className="row alert alert-light mars-font">
 							<div className="col">
 								<div className="container">
@@ -208,9 +204,6 @@ import React, { Component } from 'react'
 								<div className="input-group mb-3">
 								  <input type="text" className="form-control input-size" placeholder="Instructions" onChange={this.setInstructions} aria-label="" aria-describedby="basic-addon1"></input>
 								</div>
-							</div>
-							<div className="col-1 my-auto">
-						        <button onClick = { () => this.removeRobot(this.props.id)} type="button" className="btn btn-danger"> X </button>
 							</div>
 						</div>
 						<div className="row text-center mars-font">	
