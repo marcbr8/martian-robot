@@ -4,7 +4,7 @@ Moving a martian robot around Mars
 
 This repository contains a Spring Boot standalone app that provides a RESTful API for creation and deletion of mars grids, robots as well as the calculation of where the robots end given their instructions.
 
-The API is deployed in Heroku, under [here][https://tranquil-cove-41891.herokuapp.com]
+The API is deployed [in heroku](https://tranquil-cove-41891.herokuapp.com)
 
 If you want to run the app locally, just clone this repo, navigate to it and
 
