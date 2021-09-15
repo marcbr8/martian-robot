@@ -44,7 +44,7 @@ public class RobotController {
         return ResponseEntity.ok(createdRobot);
     }
 
-    @GetMapping ("/robot")
+    @GetMapping ("/robots")
     public ResponseEntity<List<Robot>> getListOfRobots(){
         return ResponseEntity.ok(robotService.getCopyOfCurrentRobotList());
     }

@@ -82,7 +82,7 @@ class RobotControllerTest {
         when(robotService.getCopyOfCurrentRobotList()).thenReturn(currentListOfRobots);
         final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
         final String givenListOfRobotsString = objectWriter.writeValueAsString(currentListOfRobots);
-        mockMvc.perform(MockMvcRequestBuilders.get("/robot"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/robots"))
                 .andExpect(status().isOk());
         verify(robotService).getCopyOfCurrentRobotList();
     }
