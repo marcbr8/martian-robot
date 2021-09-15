@@ -15,28 +15,28 @@ import React, { Component } from 'react'
 		}
 
 		defineXForMarsGrid(a){
+			var marsGrid = {...this.state.marsGrid}
+			marsGrid.boundaries = {...marsGrid.boundaries,
+				x: a}
+			this.setState({marsGrid})
 
-			this.setState( prevState => ({
-				marsGrid : {
-					...prevState.marsGrid,
-					x: a
-				}
-			}));
 		}
 
 		defineYForMarsGrid(a){
 
-			this.setState( prevState => ({
-				marsGrid : {
-					...prevState.marsGrid,
-					y: a
-				}
-			}));
+			var marsGrid = {...this.state.marsGrid}
+			marsGrid.boundaries = {...marsGrid.boundaries,
+				y: a}
+			this.setState({marsGrid})
 
 		}
 
 		submitGrid(){
 			this.props.funcSubmitMarsGrid(this.state.marsGrid);
+		}
+
+		clearGrids() {
+			this.props.funcClearAllGrids();
 		}
 
 		render () {
@@ -107,8 +107,11 @@ import React, { Component } from 'react'
 							</div>
 						</div>
 						<div className="row text-center">	
-							<div className="col align-self-center">					
+							<div className="col align-self-right">					
 								<button onClick = { () => this.submitGrid() }type="button" className="btn btn-success">Submit Grid</button>
+							</div>
+							<div className="col align-self-left">					
+								<button onClick = { () => this.clearGrids() }type="button" className="btn btn-danger">Clear all stored grids</button>
 							</div>
 						</div>
 					</div>

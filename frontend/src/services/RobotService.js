@@ -1,17 +1,16 @@
 import axios from 'axios';
 
-const DRIVER_API_BASE_URL = "http://localhost:8080/robot/move"
+const ROBOT_API_BASE_URL = "http://localhost:8080/robot"
 
 class RobotService {
 
-	getPositionOfRobots(marsGrid, robots){
-		var requestObject = {
-        	robotList : robots,
-        	marsGrid : marsGrid
-    	}
-    	console.log('Here comes the request object');
-    	console.log(JSON.stringify(requestObject));
-		var result = axios.post(DRIVER_API_BASE_URL, requestObject);
+	createRobot (robot){
+		var result = axios.post(ROBOT_API_BASE_URL, robot);
+	}
+
+
+	getPositionOfRobots(ROBOT_API_BASE_URL){
+		var result = axios.get(ROBOT_API_BASE_URL + '/calculate');
 		console.log(result);
 
 	}	
