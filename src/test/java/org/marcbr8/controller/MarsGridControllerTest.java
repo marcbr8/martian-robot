@@ -57,7 +57,8 @@ class MarsGridControllerTest {
         when(marsGridService.getStoredMarsGrids()).thenReturn(grids);
         final ObjectWriter objectWriter = new ObjectMapper().writer().withDefaultPrettyPrinter();
         final String gridsAsString = objectWriter.writeValueAsString(grids);
-        mockMvc.perform(MockMvcRequestBuilders.get("/grid/"))
+        System.out.println(gridsAsString);
+        mockMvc.perform(MockMvcRequestBuilders.get("/grids/"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(gridsAsString));
         verify(marsGridService).getStoredMarsGrids();
