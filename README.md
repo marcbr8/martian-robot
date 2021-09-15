@@ -11,14 +11,14 @@ If you want to run the app locally, just clone this repo, navigate to it and
 ```
 mvn spring-boot:run
 ```
-This will deploy the backend on ```http://localhost:8080```
+This will deploy the backend on ```http://localhost:8080``` In ```resources/application.properties``` you can change the frontend url for a correct redirect from the local backend
 
 The exposed endpoints are the following:
 - 
 
 Endpoint | Method/Verb | Response | Request
 ------------ | ------------- | ------------- | ------------- 
-```/robot``` | GET | A list of the current robots | 
+```/robots``` | GET | A list of the current robots | 
 ```/robot``` | POST | The newly created given robot the request | JSON
 ```/robot``` | DELETE | Deletes all robots and returns empty list |
 ```/robot/calculate``` | GET | The positions of the posted robots given the latest given grid |
