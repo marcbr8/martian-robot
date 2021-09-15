@@ -4,7 +4,10 @@ Moving a martian robot around Mars
 
 This repository contains a Spring Boot standalone app that provides a RESTful API for creation and deletion of mars grids, robots as well as the calculation of where the robots end given their instructions.
 
-The API is deployed [in heroku](https://tranquil-cove-41891.herokuapp.com)
+The API is deployed  under https://tranquil-cove-41891.herokuapp.com
+
+[Navigating to that](https://tranquil-cove-41891.herokuapp.com) on the browser will redirect you to the frontend app
+
 
 If you want to run the app locally, just clone this repo, navigate to it and
 
@@ -27,6 +30,7 @@ Endpoint | Method/Verb | Response | Request
 ```/grid``` | POST | The newly created grid given the request. This will be the used mars grid | JSON
 ```/grid``` | DELETE | Deletes all robots and returns empty list |
 
+### Example of a POST request
 To create a robot, call the ```/robot``` endpoint with the verb POST and pass as a request a JSON object like this one:
 ```
     {
@@ -51,3 +55,16 @@ To create a robot, call the ```/grid``` endpoint with the verb POST and pass as 
     }
 ```
 
+### Example of a POST request
+
+To get all the current robots
+
+```GET https://tranquil-cove-41891.herokuapp.com/robots```
+
+To get the current grid
+
+```GET https://tranquil-cove-41891.herokuapp.com/grid```
+
+To calculate for those current robots and grid
+
+```GET https://tranquil-cove-41891.herokuapp.com/robot/calculate```
