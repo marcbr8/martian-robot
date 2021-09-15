@@ -24,9 +24,15 @@ public class MarsGridController {
         return ResponseEntity.ok(createdGrid);
     }
 
-    @GetMapping("/grid")
+    @GetMapping("/grids")
     public ResponseEntity<Set<MarsGrid>> getGrids() {
         final Set<MarsGrid> marsGrids = marsGridService.getStoredMarsGrids();
+        return ResponseEntity.ok(marsGrids);
+    }
+
+    @GetMapping("/grid")
+    public ResponseEntity<MarsGrid> getCurrentGrid() {
+        final MarsGrid marsGrids = marsGridService.getCurrentMarsGrid();
         return ResponseEntity.ok(marsGrids);
     }
 

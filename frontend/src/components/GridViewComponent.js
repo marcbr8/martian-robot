@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import GridService from '../services/GridService'
 
 	class GridViewComponent extends Component {
 
@@ -12,6 +13,11 @@ import React, { Component } from 'react'
 					}
 				}
 			}
+		}
+
+		componentDidMount(){
+			GridService.clearAllGrids();
+			
 		}
 
 		defineXForMarsGrid(a){
@@ -59,6 +65,7 @@ import React, { Component } from 'react'
 								 			   {this.state.marsGrid.boundaries.x}
 											  </button>
 											  <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+												<button onClick = { () => this.defineXForMarsGrid(0) } className="dropdown-item" >0</button>											  
 												<button onClick = { () => this.defineXForMarsGrid(1) } className="dropdown-item" >1</button>
 											    <button onClick = { () => this.defineXForMarsGrid(2) } className="dropdown-item" >2</button>
 											    <button onClick = { () => this.defineXForMarsGrid(3) } className="dropdown-item" >3</button>

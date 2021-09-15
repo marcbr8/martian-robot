@@ -40,6 +40,7 @@ public class MarsGridService {
 
     public Set<MarsGrid> clearGrids() {
         fallenCoordinates = newHashMap();
+        this.currentMarsGrid = new MarsGrid(Coordinates.of(0,0));
         return fallenCoordinates.keySet();
     }
 }
