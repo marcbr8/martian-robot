@@ -1,5 +1,4 @@
 # martian-robot
-Moving a martian robot around Mars
 
 
 This repository contains a Spring Boot standalone app that provides a RESTful API for creation and deletion of mars grids, robots as well as the calculation of where the robots end given their instructions.
@@ -55,7 +54,7 @@ To create a robot, call the ```/grid``` endpoint with the verb POST and pass as 
     }
 ```
 
-### Example of a POST request
+### Example of a GET request
 
 To get all the current robots
 
